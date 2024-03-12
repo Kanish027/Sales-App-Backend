@@ -38,7 +38,7 @@ const registerUser = async (req, res) => {
         expires: new Date(Date.now() + 3600000),
         httpOnly: true,
         sameSite: process.env.NODE_ENV === "DEVELOPMENT" ? "lax" : "none",
-        secure: process.env.NODE_ENV === "DEVELOPMENT" ? false : true,
+        secure: process.env.NODE_ENV === "production" ? true : false,
       })
       .json({
         success: true,
@@ -91,7 +91,7 @@ const loginUser = async (req, res) => {
         expires: new Date(Date.now() + 3600000),
         httpOnly: true,
         sameSite: process.env.NODE_ENV === "DEVELOPMENT" ? "lax" : "none",
-        secure: process.env.NODE_ENV === "DEVELOPMENT" ? false : true,
+        secure: process.env.NODE_ENV === "production" ? true : false,
       })
       .json({
         success: true,
@@ -135,7 +135,7 @@ const logout = (req, res) => {
       expires: new Date(Date.now()),
       httpOnly: true,
       sameSite: process.env.NODE_ENV === "DEVELOPMENT" ? "lax" : "none",
-      secure: process.env.NODE_ENV === "DEVELOPMENT" ? false : true,
+      secure: process.env.NODE_ENV === "production" ? true : false,
     })
     .json({
       success: true,
