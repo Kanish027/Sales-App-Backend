@@ -88,18 +88,10 @@ const get24HrsRevenue = async (req, res) => {
       },
     ]);
 
-    // Responding with a not found message if no revenue is generated
-    if (!revenue.length) {
-      return res.status(404).json({
-        success: false,
-        message: "No revenue generated in the last 24 hours",
-      });
-    }
-
     // Responding with a success message and the total revenue
     res.status(200).json({
       success: true,
-      totalRevenue: revenue[0].totalRevenue,
+      totalRevenue: revenue.length ? revenue[0].totalRevenue : 0, // If no revenue is generated, send 0
     });
   } catch (error) {
     // Handling server error and responding with an error message
