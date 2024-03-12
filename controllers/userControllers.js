@@ -37,6 +37,8 @@ const registerUser = async (req, res) => {
       .cookie("token", token, {
         expires: new Date(Date.now() + 3600000),
         httpOnly: true,
+        sameSite: process.env.NODE_ENV === "DEVELOPMENT" ? "lax" : "none",
+        secure: process.env.NODE_ENV === "DEVELOPMENT" ? false : true,
       })
       .json({
         success: true,
@@ -88,6 +90,8 @@ const loginUser = async (req, res) => {
       .cookie("token", token, {
         expires: new Date(Date.now() + 3600000),
         httpOnly: true,
+        sameSite: process.env.NODE_ENV === "DEVELOPMENT" ? "lax" : "none",
+        secure: process.env.NODE_ENV === "DEVELOPMENT" ? false : true,
       })
       .json({
         success: true,
@@ -130,6 +134,8 @@ const logout = (req, res) => {
     .cookie("token", "", {
       expires: new Date(Date.now()),
       httpOnly: true,
+      sameSite: process.env.NODE_ENV === "DEVELOPMENT" ? "lax" : "none",
+      secure: process.env.NODE_ENV === "DEVELOPMENT" ? false : true,
     })
     .json({
       success: true,

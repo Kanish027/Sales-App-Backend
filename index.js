@@ -39,5 +39,7 @@ app.use("/api/v1/product", productRouter);
 
 // Start the server, listening on the specified port
 app.listen(process.env.PORT, () => {
-  console.log(`Server is listening on PORT ${process.env.PORT}`);
+  console.log(
+    `Server is listening on PORT ${process.env.PORT} in ${process.env.NODE_ENV} Mode`
+  );
 });
